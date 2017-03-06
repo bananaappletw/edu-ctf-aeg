@@ -1,4 +1,6 @@
-# edu-ctf-final-aeg
+# edu-ctf-aeg
+
+# Final
 
  - [magicpuzzle](magicpuzzle) author: [mango king](https://github.com/mangokingTW)
  - [oo](oo) author: [bananaappletw](https://github.com/bananaappletw)
