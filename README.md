@@ -10,3 +10,4 @@
 
  - [ccr](ccr) author: [banannaappletw](https://github.com/bananaappletw)
  - [suicide](suicide) author: [banannaappletw](https://github.com/bananaappletw)
+ - [angrman](angrman) author: [mango king](https://github.com/mangokingTW)
