@@ -10,7 +10,7 @@ ip = "133.130.124.59"
 port = 9991
 s = remote(ip, port)
 print(s.recvuntil("base64"))
-for i in range(3):
+for i in range(2):
     if i:
         s.recvuntil('GJ!')
     program = s.recvuntil("0th")
@@ -24,7 +24,7 @@ for i in range(3):
     print(output)
     address = int(output[:output.find(':')],16)
     print(str(address))
-    logging.basicConfig(level=logging.DEBUG) 
+    logging.basicConfig(level=logging.DEBUG)
     proj = angr.Project('./tmp', load_options={'auto_load_libs':False})
     end = address
 

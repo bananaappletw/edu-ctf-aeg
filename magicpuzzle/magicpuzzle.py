@@ -79,13 +79,13 @@ def genarr():
 			size = msize
 		msize = msize - size
 		for j in range(size):
-			r = random.randint(0,len(matrix)-1) 
+			r = random.randint(0,len(matrix)-1)
 			piece[j] = matrix[r]
 			del matrix[r]
 		#print piece
 		for j in range(size):
-			n = piece[j]%6 if piece[j]%6 < n else  n 
-			m = piece[j]/6 if piece[j]/6 < m else  m 
+			n = piece[j]%6 if piece[j]%6 < n else  n
+			m = piece[j]/6 if piece[j]/6 < m else  m
 		for j in range(size):
 			piece[j] = 1<<(piece[j]-(6*m)-n)
 		#print piece,m,n
