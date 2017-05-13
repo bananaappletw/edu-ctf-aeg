@@ -4,7 +4,7 @@ import logging
 
 logging.getLogger('simuvex.vex.irsb').setLevel(logging.ERROR)
 
-proj = angr.Project('./angrman.out', load_options={'auto_load_libs':False})
+proj = angr.Project('./angrman', load_options={'auto_load_libs':False})
 exitangr = 0x400627
 end = 0x400d2b
 
