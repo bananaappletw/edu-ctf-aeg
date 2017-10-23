@@ -93,11 +93,12 @@ def genarr():
 	return arr
 
 
+os.chdir('/tmp/')
 code2 = "".join(genarr())
 f = open("puzzle.c","w+")
 f.write(code1+code2+code3+code4+code5)
 f.close()
-os.popen('clang puzzle.c -o puzzle.out');
+os.popen('gcc puzzle.c -o puzzle.out');
 print("Hey")
 print("Try to solve magic puzzle")
 print("I will send you program encoded by base64")
@@ -114,7 +115,7 @@ code4 = "cat flag"
 f = open("puzzle.c","w+")
 f.write(code1+code2+code3+code4+code5)
 f.close()
-os.popen('clang puzzle.c -o puzzle.out');
+os.popen('gcc puzzle.c -o puzzle.out');
 output = os.popen('base64 puzzle.out');
 print output.read()
 rv = os.system('./puzzle.out');
