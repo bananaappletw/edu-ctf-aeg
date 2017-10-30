@@ -3,6 +3,7 @@ import os
 import time
 import random
 import fractions
+import subprocess
 
 code1="""#include <stdio.h>
 #include <stdlib.h>
@@ -37,7 +38,7 @@ int main(){
     setvbuf(stdout, 0LL, 2, 0LL);
     setvbuf(stdin, 0LL, 1, 0LL);
     signal(SIGALRM, handler);
-    alarm(60);
+    alarm(120);
     for( p = 0 ; p < num_piece; p++ ){
 	printf("%dth Piece\\n",p);
         read(0,in,3);
@@ -92,30 +93,31 @@ def genarr():
 		arr[i] =  "{"+arr[i].format(piece[0],piece[1],piece[2],piece[3],piece[4],piece[5],piece[6],piece[7],piece[8])+"},"
 	return arr
 
-
 os.chdir('/tmp/')
 code2 = "".join(genarr())
-f = open("puzzle.c","w+")
-f.write(code1+code2+code3+code4+code5)
-f.close()
-os.popen('gcc puzzle.c -o puzzle.out');
+filename = time.strftime("%m%d_%H%M%S", time.localtime()) + os.urandom(16).encode('hex') + ".c"
+with open(filename,"wb") as f:
+    f.write(code1+code2+code3+code4+code5)
+
+os.popen("gcc -o ./"+filename[:-2]+" ./"+filename+" 2>/dev/null");
 print("Hey")
 print("Try to solve magic puzzle")
 print("I will send you program encoded by base64")
 time.sleep(1)
-output = os.popen('base64 puzzle.out');
-print output.read()
-rv = os.system('./puzzle.out');
+output = subprocess.check_output("base64 ./"+filename[:-2] , shell=True)
+print(output)
+rv = os.system("./"+filename[:-2])
 if rv != 0 :
-	print "Wrong answer"
-	exit(1)
+    print "Wrong answer"
+    exit(1)
 
 code2 = "".join(genarr())
 code4 = "cat flag"
-f = open("puzzle.c","w+")
-f.write(code1+code2+code3+code4+code5)
-f.close()
-os.popen('gcc puzzle.c -o puzzle.out');
-output = os.popen('base64 puzzle.out');
-print output.read()
-rv = os.system('./puzzle.out');
+with open(filename,"wb") as f:
+    f.write(code1+code2+code3+code4+code5)
+
+os.popen("gcc -o ./"+filename[:-2]+" ./"+filename+" 2>/dev/null");
+output = subprocess.check_output("base64 ./"+filename[:-2] , shell=True)
+print(output)
+os.chdir(os.path.dirname(__file__))
+rv = os.system("/tmp/"+filename[:-2])
